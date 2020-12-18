@@ -56,13 +56,21 @@ const isLetter = (letter) => {
 
 // Caesar
 const caesar = (text) => {
+  let offset = parseInt(document.querySelector(".key").value);
+  if (isNaN(offset)) {
+    offset = 3;
+  }
   let encrypted = "";
   for (let i = 0; i < text.length; i++) {
     const letter = text[i].toUpperCase();
-    const positionInTheAlphabet = alphabet.indexOf(letter);
-    encrypted += alphabet[(positionInTheAlphabet + 3) % 35];
+    if (letter == " ") {
+      encrypted += " ";
+    } else {
+      const positionInTheAlphabet = alphabet.indexOf(letter);
+      encrypted += alphabet[(positionInTheAlphabet + offset) % 35];
+    }
   }
-  return encrypted;
+  return encrypted.toLocaleLowerCase();
 };
 
 const initCaesar = () => {
@@ -74,11 +82,163 @@ const initCaesar = () => {
   });
 };
 
+const initPlayfair = () => {
+  document
+    .querySelector(".playfair")
+    .addEventListener("click", encryptPlayfair);
+};
+
 const init = () => {
   initCaesar();
   initVigenere();
+  initPlayfair();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   init();
 });
+
+const encryptPlayfair = () => {
+  const alphabets = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
+  const grid = [];
+  const diagrams = [];
+
+  let encryptedWord = "";
+
+  let userInput = document.querySelector(".input").value.toLowerCase();
+  const key = document.querySelector(".key").value.toLowerCase();
+
+  for (let i = key.length - 1; i >= 0; i--) {
+    const letter = key[i];
+    const letterPos = alphabets.indexOf(letter);
+    alphabets.splice(letterPos, 1);
+    alphabets.unshift(letter);
+  }
+
+  userInput = userInput.replace(/ /g, "");
+  userInput = userInput.replace(/j/g, "i");
+
+  for (let i = 0; i < userInput.length; i += 2) {
+    if (userInput[i + 1]) {
+      diagrams.push(`${userInput[i]}${userInput[i + 1]}`);
+    } else {
+      diagrams.push(`${userInput[i]}x`);
+    }
+  }
+
+  let row = [];
+  for (let i = 0; i < alphabets.length; i++) {
+    if (i % 5 == 0 && i != 0) {
+      grid.push(row);
+      row = [];
+    }
+    row.push(alphabets[i]);
+  }
+  grid.push(row);
+  console.log(grid);
+
+  diagrams.forEach((diagram) => {
+    let checked = false;
+
+    const a = diagram[0];
+    const b = diagram[1];
+
+    let aIndex = -1;
+    let bIndex = -1;
+    for (let i = 0; i < 5; i++) {
+      aIndex = -1;
+      bIndex = -1;
+      for (let j = 0; j < 5; j++) {
+        if (grid[i][j] == a) {
+          aIndex = j;
+        }
+        if (grid[i][j] == b) {
+          bIndex = j;
+        }
+        if (aIndex > -1 && bIndex > -1) {
+          // TO SA W TYM SAMYM RZEDZIE
+          if (!checked) {
+            checked = true;
+            encryptedWord += grid[i][(aIndex + 1) % 5];
+            encryptedWord += grid[i][(bIndex + 1) % 5];
+          }
+        }
+      }
+    }
+
+    if (!checked) {
+      aIndex = -1;
+      bIndex = -1;
+      for (let i = 0; i < 5; i++) {
+        aIndex = -1;
+        bIndex = -1;
+        for (let j = 0; j < 5; j++) {
+          if (grid[j][i] == a) {
+            aIndex = j;
+          }
+          if (grid[j][i] == b) {
+            bIndex = j;
+          }
+          if (aIndex > -1 && bIndex > -1) {
+            // TO SA W TEJ SAMEJ KOLUMNIE
+            if (!checked) {
+              checked = true;
+              encryptedWord += grid[(aIndex + 1) % 5][i];
+              encryptedWord += grid[(bIndex + 1) % 5][i];
+            }
+          }
+        }
+      }
+    }
+
+    if (!checked) {
+      //  NIE SA W  TYM SAMYM RZEDZIE I W TEJ SAMEJ KOLUMNIE
+      aI = -1;
+      aJ = -1;
+      bI = -1;
+      bJ = -1;
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+          if (grid[i][j] == a) {
+            aI = i;
+            aJ = j;
+          }
+          if (grid[i][j] == b) {
+            bI = i;
+            bJ = j;
+          }
+        }
+      }
+      encryptedWord += grid[aI][bJ];
+      encryptedWord += grid[bI][aJ];
+    }
+  });
+
+  document.querySelector(".cipher_code").value = encryptedWord;
+};

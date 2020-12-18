@@ -37,13 +37,17 @@ body {
   justify-content: center;
 }
 .input,
-.key {
+.key,
+.offset {
   height: 40px;
   width: 305px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   outline: none;
+}
+.offset {
+  width: 60px;
 }
 .key,
 .labelKey {
