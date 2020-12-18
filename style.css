@@ -67,6 +67,7 @@ body {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 .choosing_the_cipher {
   display: flex;
@@ -86,6 +87,12 @@ body {
   font-size: 12px;
   background-color: transparent;
   outline: none;
+}
+.caesar:hover,
+.vigenere:hover,
+.playfair:hover {
+  transform: scale(0.9);
+  cursor: pointer;
 }
 .cipher_code_label {
   margin-bottom: 1rem;
