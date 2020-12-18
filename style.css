@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.menu_block {
+  display: flex;
+  width: 780px;
+  height: 480px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  /* box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  flex-direction: column;
+}
+.text_area,
+.cipher_code_area {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+}
+.input,
+.cipher_code {
+  height: 60px;
+  width: 490px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+.choosing_the_cipher {
+  display: flex;
+  flex-basis: 100%;
+  margin-bottom: -10rem;
+}
+.caesar,
+.vigenere,
+.playfair {
+  width: 120px;
+  height: 50px;
+  margin: 0 2em;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: transparent;
+}
+.cipher_code {
+  height: 40px;
+  width: 390px;
+}
