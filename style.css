@@ -24,39 +24,76 @@ body {
   align-items: center;
   flex-direction: column;
 }
-.text_area,
+.top_box {
+  display: flex;
+  flex-basis: 100%;
+  flex-direction: column;
+  height: auto;
+}
+.text_area {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.input,
+.key {
+  height: 40px;
+  width: 305px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  outline: none;
+}
+.key,
+.labelKey {
+  margin-top: -10rem;
+}
+.bottom_box {
+  display: flex;
+  flex-basis: 40%;
+  margin-top: -5rem;
+}
 .cipher_code_area {
   display: flex;
   flex-basis: 100%;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-.input,
 .cipher_code {
-  height: 60px;
-  width: 490px;
+  height: 40px;
+  width: 600px;
+  outline: none;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
 }
 .choosing_the_cipher {
   display: flex;
   flex-basis: 100%;
-  margin-bottom: -10rem;
+  margin-bottom: -5rem;
 }
 .caesar,
 .vigenere,
 .playfair {
   width: 120px;
   height: 50px;
-  margin: 0 2em;
+  margin: -6em 2em;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
   font-weight: 600;
   font-size: 12px;
   background-color: transparent;
+  outline: none;
 }
-.cipher_code {
-  height: 40px;
-  width: 390px;
+.cipher_code_label {
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+.labelKey,
+.input_label {
+  margin-left: -4rem;
+  margin-right: 2rem;
+  font-size: 13px;
 }

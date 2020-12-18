@@ -13,16 +13,26 @@
   <body>
     <div class="container">
       <div class="menu_block">
-        <div class="text_area">
-          <input class="input" type="text" />
+        <div class="top_box">
+          <div class="text_area">
+            <label class="input_label" for="">Enter text:</label>
+            <input class="input" type="text" />
+          </div>
+          <div class="text_area">
+            <label class="labelKey" for="">Enter key:</label>
+            <input class="key" type="text" />
+          </div>
+          <div class="choosing_the_cipher">
+            <button class="caesar">Caesar</button>
+            <button class="vigenere">Vigenere</button>
+            <button class="playfair">Playfair</button>
+          </div>
         </div>
-        <div class="choosing_the_cipher">
-          <button class="caesar">Caesar</button>
-          <button class="vigenere">Vigenere</button>
-          <button class="playfair">Playfair</button>
-        </div>
-        <div class="cipher_code_area">
-          <input class="cipher_code" type="text" />
+        <div class="bottom_box">
+          <div class="cipher_code_area">
+            <label class="cipher_code_label" for="">Cipher code:</label>
+            <input class="cipher_code" type="text" />
+          </div>
         </div>
       </div>
     </div>
